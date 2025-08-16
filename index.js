@@ -35,6 +35,20 @@ app.use('/api/users',userRouter)
 app.use('/api/products',productRouter)
 app.use('/api/payment', paymentRouter);
 
+// ✅ Start server only after MongoDB is connected
+const startServer = async () => {
+  try {
+    await connectMongoDb(process.env.MONGODB_URL);
+    console.log("✅ MongoDB connected");
 
+    app.listen(port, () => {
+      console.log(`🚀 Server is running at http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.error("❌ MongoDB connection failed:", error);
+    process.exit(1); // Stop the process if DB connection fails
+  }
+};
+startServer();
 
-app.listen(port, ()=>console.log(`Server runs at port ${port}`))
+//app.listen(port, ()=>console.log(`Server runs at port ${port}`))
