@@ -10,9 +10,7 @@ async function handleGetAllUsers(req, res) {
   return res.json(allDbUsers);
 }
 
-async function renderResponse(req,res) {
-  res.json({message:'hello from server'})   
-}
+
 //create new user
 async function handleCreateNewUser(req, res) {
   const errors = validationResult(req);
@@ -147,5 +145,5 @@ module.exports = {
   handleProtected,
   handleRefreshToken,
   handlePromoteToAdmin,
-  renderResponse,
+  
 };

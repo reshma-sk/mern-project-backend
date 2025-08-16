@@ -6,16 +6,16 @@ const userRouter = require('./routes/user')
 const productRouter = require('./routes/product')
 const cors = require("cors")
 const port = 5000;
-//require("dotenv").config();
+require("dotenv").config();
 const cookieParser = require("cookie-parser");
 
 //connection
-connectMongoDb("mongodb://127.0.0.1:27017/jwtauth-project").then(()=>{
+/* connectMongoDb("mongodb://127.0.0.1:27017/jwtauth-project").then(()=>{
   console.log('mongodb connected');  
-})
+}) */
 
 // ✅ Setup CORS
-const allowedOrigins = process.env.FRONTEND_URL.split(",");
+const allowedOrigins = (process.env.FRONTEND_URL || "").split(",");
 app.use(
   cors({
     origin: function (origin, callback) {
